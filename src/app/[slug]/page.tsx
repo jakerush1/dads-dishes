@@ -4,14 +4,17 @@ import { eq } from "drizzle-orm";
 import { RecipePageComponent } from "~/components/recipe-page";
 import { notFound } from "next/navigation";
 
+type Params = Promise<{ slug: string }>;
+
 type Props = {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
+  params: Params;
+  searchParams?: Record<string, string | string[] | undefined>;
 };
 
 export default async function RecipePage({ params }: Props) {
+  const resolvedParams = await params;
   const recipe = await db.query.recipes.findFirst({
-    where: eq(recipes.slug, params.slug),
+    where: eq(recipes.slug, resolvedParams.slug),
   });
 
   if (!recipe) {
