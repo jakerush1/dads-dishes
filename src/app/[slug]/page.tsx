@@ -8,7 +8,6 @@ type Params = Promise<{ slug: string }>;
 
 type Props = {
   params: Params;
-  searchParams?: Record<string, string | string[] | undefined>;
 };
 
 export default async function RecipePage({ params }: Props) {
