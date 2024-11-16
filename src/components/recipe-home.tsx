@@ -1,20 +1,24 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users } from "lucide-react";
-import { TITLE, DESCRIPTION, IMAGE } from "~/app/roasted-tomato-soup/constants";
+import { db } from "~/db";
+import { recipes } from "~/db/schema";
+import { desc } from "drizzle-orm";
 
-const FEATURED_RECIPE = {
-  slug: "roasted-tomato-soup",
-  title: TITLE,
-  description: DESCRIPTION,
-  image: IMAGE,
-  cookingTime: "75 minutes",
-  servings: "6 servings",
-};
+export async function RecipeHomeComponent() {
+  const featuredRecipe = await db.query.recipes.findFirst({
+    orderBy: desc(recipes.createdAt),
+  });
 
-export function RecipeHomeComponent() {
+  const allRecipes = await db.query.recipes.findMany({
+    orderBy: desc(recipes.createdAt),
+    where: (recipes, { ne }) => ne(recipes.id, featuredRecipe?.id ?? 0),
+  });
+
+  if (!featuredRecipe) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <main className="mx-auto max-w-4xl px-4 py-8">
@@ -31,13 +35,13 @@ export function RecipeHomeComponent() {
           </h2>
 
           <Link
-            href={`/${FEATURED_RECIPE.slug}`}
+            href={`/${featuredRecipe.slug}`}
             className="group block overflow-hidden rounded-lg border border-gray-800"
           >
             <div className="aspect-[16/9] w-full">
               <Image
-                src={FEATURED_RECIPE.image}
-                alt={FEATURED_RECIPE.title}
+                src={featuredRecipe.image}
+                alt={featuredRecipe.title}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 width={1000}
                 height={1000}
@@ -46,24 +50,66 @@ export function RecipeHomeComponent() {
 
             <div className="p-6">
               <h3 className="mb-2 font-serif text-2xl font-bold">
-                {FEATURED_RECIPE.title}
+                {featuredRecipe.title}
               </h3>
-              <p className="mb-4 text-gray-400">
-                {FEATURED_RECIPE.description}
-              </p>
+              <p className="mb-4 text-gray-400">{featuredRecipe.description}</p>
 
               <div className="flex items-center gap-4 text-sm text-gray-400">
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
-                  {FEATURED_RECIPE.cookingTime}
+                  {featuredRecipe.cookingTime}
                 </span>
                 <span className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  {FEATURED_RECIPE.servings}
+                  {featuredRecipe.servings}
                 </span>
               </div>
             </div>
           </Link>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="mb-6 font-serif text-2xl font-bold">All Recipes</h2>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {allRecipes.map((recipe) => (
+              <Link
+                key={recipe.id}
+                href={`/${recipe.slug}`}
+                className="group block overflow-hidden rounded-lg border border-gray-800"
+              >
+                <div className="aspect-[16/9] w-full">
+                  <Image
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    width={1000}
+                    height={1000}
+                  />
+                </div>
+
+                <div className="p-4">
+                  <h3 className="mb-2 font-serif text-xl font-bold">
+                    {recipe.title}
+                  </h3>
+                  <p className="mb-4 line-clamp-2 text-sm text-gray-400">
+                    {recipe.description}
+                  </p>
+
+                  <div className="flex items-center gap-4 text-sm text-gray-400">
+                    <span className="flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      {recipe.cookingTime}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <Users className="h-4 w-4" />
+                      {recipe.servings}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
       </main>
     </div>

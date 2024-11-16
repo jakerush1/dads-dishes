@@ -6,7 +6,6 @@ import {
   Clock,
   Printer,
   Share2,
-  Star,
   Users,
 } from "lucide-react";
 import { Button } from "~/components/ui/button";
@@ -93,10 +92,10 @@ export function RecipePageComponent({
         {/* Ingredients */}
         <section className="mb-8">
           <h2 className="mb-4 font-serif text-2xl font-bold">Ingredients</h2>
-          <ul className="space-y-2">
+          <ul className="space-y-4">
             {ingredients.map((ingredient, index) => (
               <li key={index} className="flex items-center">
-                <span className="mr-2 h-5 w-5 rounded border border-gray-600"></span>
+                {/* <span className="mr-2 h-5 w-5 rounded border border-gray-600"></span> */}
                 {ingredient}
               </li>
             ))}
