@@ -2,22 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users } from "lucide-react";
 import { db } from "~/db";
-import { recipes } from "~/db/schema";
-import { desc } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 
 export async function RecipeHomeComponent() {
-  const featuredRecipe = await db.query.recipes.findFirst({
-    orderBy: desc(recipes.createdAt),
+  // Get total count of recipes
+  const totalRecipes = await db.query.recipes.findMany({
+    columns: { id: true },
   });
 
-  const allRecipes = await db.query.recipes.findMany({
-    orderBy: desc(recipes.createdAt),
-    where: (recipes, { ne }) => ne(recipes.id, featuredRecipe?.id ?? 0),
+  // Get a random recipe as featured
+  const randomIndex = Math.floor(Math.random() * totalRecipes.length);
+  const featuredRecipe = await db.query.recipes.findFirst({
+    offset: randomIndex,
   });
 
   if (!featuredRecipe) {
     return null;
   }
+
+  const allRecipes = await db.query.recipes.findMany({
+    orderBy: sql`RANDOM()`,
+    where: (recipes, { ne }) => ne(recipes.id, featuredRecipe?.id ?? 0),
+  });
 
   return (
     <div className="min-h-screen bg-black text-white">
