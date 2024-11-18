@@ -1,16 +1,10 @@
 "use client";
 
-import {
-  ArrowLeft,
-  Bookmark,
-  Clock,
-  Printer,
-  Share2,
-  Users,
-} from "lucide-react";
+import { ArrowLeft, Clock, Users } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import Image from "next/image";
+
 interface RecipePageComponentProps {
   title: string;
   description: string;
@@ -29,45 +23,26 @@ export function RecipePageComponent({
   image,
 }: RecipePageComponentProps) {
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-gray-800 bg-black">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
-          <Button
-            variant="ghost"
-            className="text-gray-400 hover:text-white"
-            onClick={() => (window.location.href = "/")}
-          >
-            <ArrowLeft className="h-5 w-5" />
-            <span className="sr-only">Back</span>
-          </Button>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" className="text-gray-400 hover:text-white">
-              <Bookmark className="h-5 w-5" />
-              <span className="sr-only">Save recipe</span>
-            </Button>
-            <Button variant="ghost" className="text-gray-400 hover:text-white">
-              <Share2 className="h-5 w-5" />
-              <span className="sr-only">Share recipe</span>
-            </Button>
-            <Button variant="ghost" className="text-gray-400 hover:text-white">
-              <Printer className="h-5 w-5" />
-              <span className="sr-only">Print recipe</span>
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-background text-foreground">
       {/* Main Content */}
       <main className="mx-auto max-w-4xl px-4 py-8">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => (window.location.href = "/")}
+          className="mb-8"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Recipes
+        </Button>
+
         {/* Recipe Header */}
         <div className="mb-8">
-          <h1 className="mb-2 font-serif text-3xl font-bold leading-tight md:text-4xl">
+          <h1 className="font-domine mb-2 text-3xl font-bold leading-tight md:text-4xl">
             {title}
           </h1>
-          <div className="mb-4 text-gray-400">A Family Recipe</div>
-          <p className="mb-4 text-lg text-gray-300">{description}</p>
-          <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+          <p className="mb-4 text-lg text-muted-foreground">{description}</p>
+          <div className="flex flex-wrap items-center gap-6 text-sm text-red-600">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               75 minutes
@@ -88,14 +63,21 @@ export function RecipePageComponent({
             height={1000}
           />
         </div>
+        {quote && (
+          <>
+            <section className="text-center italic text-muted-foreground">
+              {quote}
+            </section>
+            <Separator className="my-8 bg-gray-800" />
+          </>
+        )}
 
         {/* Ingredients */}
         <section className="mb-8">
-          <h2 className="mb-4 font-serif text-2xl font-bold">Ingredients</h2>
+          <h2 className="font-domine mb-4 text-2xl font-bold">Ingredients</h2>
           <ul className="space-y-4">
             {ingredients.map((ingredient, index) => (
               <li key={index} className="flex items-center">
-                {/* <span className="mr-2 h-5 w-5 rounded border border-gray-600"></span> */}
                 {ingredient}
               </li>
             ))}
@@ -105,8 +87,8 @@ export function RecipePageComponent({
         <Separator className="my-8 bg-gray-800" />
 
         {/* Preparation */}
-        <section>
-          <h2 className="mb-4 font-serif text-2xl font-bold">Preparation</h2>
+        <section className="mb-6">
+          <h2 className="font-domine mb-4 text-2xl font-bold">Preparation</h2>
           <ol className="space-y-4">
             {directions.map((step, index) => (
               <li key={index} className="flex">
@@ -116,15 +98,6 @@ export function RecipePageComponent({
             ))}
           </ol>
         </section>
-
-        {quote && (
-          <>
-            <Separator className="my-8 bg-gray-800" />
-            <section className="text-center italic text-gray-400">
-              {quote}
-            </section>
-          </>
-        )}
       </main>
     </div>
   );
