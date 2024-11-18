@@ -18,7 +18,7 @@ export function SearchBar({ defaultValue = "" }) {
       params.delete("q");
     }
     startTransition(() => {
-      router.push(`/search?${params.toString()}`);
+      router.push(`/recipes?${params.toString()}`);
     });
   }
 
