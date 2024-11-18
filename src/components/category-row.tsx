@@ -1,21 +1,11 @@
-import { type Recipe } from "~/db/schema";
 import { RecipeCard } from "./recipe-card";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { type RecipeCardData } from "~/types/recipe";
 
 interface CategoryRowProps {
   title: string;
-  recipes: Pick<
-    Recipe,
-    | "id"
-    | "slug"
-    | "title"
-    | "description"
-    | "image"
-    | "cookingTime"
-    | "servings"
-    | "tags"
-  >[];
+  recipes: RecipeCardData[];
 }
 
 function getFriendlyTitle(title: string) {

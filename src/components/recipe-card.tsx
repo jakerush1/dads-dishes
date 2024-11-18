@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users } from "lucide-react";
-import type { Recipe } from "~/db/schema";
+import { type RecipeCardData } from "~/types/recipe";
 
 interface RecipeCardProps {
-  recipe: Recipe;
-  className?: string;
+  recipe: RecipeCardData;
 }
 
-export function RecipeCard({ recipe, className = "" }: RecipeCardProps) {
+export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
     <Link
       href={`/${recipe.slug}`}
-      className={`group block h-full overflow-hidden rounded-lg border border-accent transition-all duration-300 hover:shadow-md ${className}`}
+      className="group block h-full overflow-hidden rounded-lg border border-accent transition-all duration-300 hover:shadow-md"
     >
       <div className="aspect-[4/3] w-full">
         <Image
@@ -25,7 +24,7 @@ export function RecipeCard({ recipe, className = "" }: RecipeCardProps) {
       </div>
 
       <div className="p-3">
-        <h3 className="font-domine mb-1 line-clamp-1 text-base font-bold">
+        <h3 className="mb-1 line-clamp-1 font-domine text-base font-bold">
           {recipe.title}
         </h3>
         <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
