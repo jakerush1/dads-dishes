@@ -1,8 +1,7 @@
 import { db } from "~/db";
 import { sql } from "drizzle-orm";
 import { FeaturedRecipe } from "./featured-recipe";
-import { RecipeGrid } from "./recipe-grid";
-import { recipes, tags } from "~/db/schema";
+import { recipes } from "~/db/schema";
 import { CategoryRow } from "./category-row";
 
 export async function RecipeHomeComponent() {
@@ -62,18 +61,13 @@ export async function RecipeHomeComponent() {
     },
     {} as Record<string, typeof taggedRecipes>,
   );
-  console.log(recipesByTag);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="mx-auto max-w-4xl px-4 py-4 sm:py-8">
         <FeaturedRecipe recipe={featuredRecipe} />
         {Object.entries(recipesByTag).map(([tag, recipes]) => (
-          <CategoryRow
-            key={tag}
-            title={tag}
-            recipes={recipes} // Limit to 6 recipes per category
-          />
+          <CategoryRow key={tag} title={tag} recipes={recipes} />
         ))}
       </main>
     </div>

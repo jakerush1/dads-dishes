@@ -5,15 +5,18 @@ import { SearchBar } from "~/components/search-bar";
 import { TagFilter } from "~/components/tag-filter";
 import { and, ilike, sql } from "drizzle-orm";
 
-interface SearchPageProps {
-  searchParams: {
-    q?: string;
-    tags?: string;
-  };
-}
+type SearchPageParams = Promise<{
+  q?: string;
+  tags?: string;
+}>;
+
+type SearchPageProps = {
+  searchParams: SearchPageParams;
+};
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const { q, tags } = searchParams;
+  const resolvedSearchParams = await searchParams;
+  const { q, tags } = resolvedSearchParams;
   const selectedTags = tags?.split(",").filter(Boolean) ?? [];
 
   // Get all unique tags for the filter
