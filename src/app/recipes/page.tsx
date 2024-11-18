@@ -21,7 +21,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   // Get all unique tags for the filter
   const tagsResult = await db
-    .select({ tag: sql`DISTINCT unnest(tags)` })
+    .select({ tag: sql<string>`DISTINCT unnest(tags)` })
     .from(recipes);
   const allTags = tagsResult.map((r) => r.tag).filter(Boolean);
 
