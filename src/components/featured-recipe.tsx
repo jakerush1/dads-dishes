@@ -10,10 +10,6 @@ interface FeaturedRecipeProps {
 export function FeaturedRecipe({ recipe }: FeaturedRecipeProps) {
   return (
     <section>
-      <h2 className="font-domine mb-4 text-xl font-bold sm:mb-6 sm:text-2xl">
-        Featured Recipe
-      </h2>
-
       <Link
         href={`/${recipe.slug}`}
         className="group block overflow-hidden rounded-lg sm:flex"
@@ -29,12 +25,15 @@ export function FeaturedRecipe({ recipe }: FeaturedRecipeProps) {
         </div>
 
         <div className="p-4 sm:w-[55%] sm:p-6">
+          <h4 className="font-domine mb-3 text-base font-bold text-red-600 sm:mb-6 sm:text-lg">
+            RECIPE OF THE DAY
+          </h4>
           <h3 className="font-domine mb-2 text-xl font-bold sm:text-2xl">
             {recipe.title}
           </h3>
           <p className="mb-4 text-muted-foreground">{recipe.description}</p>
 
-          <div className="flex items-center gap-4 text-sm text-red-600">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               {recipe.cookingTime}

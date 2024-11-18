@@ -2,7 +2,8 @@ import { db } from "~/db";
 import { sql } from "drizzle-orm";
 import { FeaturedRecipe } from "./featured-recipe";
 import { RecipeGrid } from "./recipe-grid";
-import { recipes } from "~/db/schema";
+import { recipes, tags } from "~/db/schema";
+import { CategoryRow } from "./category-row";
 
 export async function RecipeHomeComponent() {
   const result = await db
@@ -13,26 +14,67 @@ export async function RecipeHomeComponent() {
 
   const count = result?.[0]?.count ?? 0;
 
-  // Get a random recipe
+  // Use the current date as a seed for random selection
+  const today = new Date();
+  const dailySeed =
+    today.getFullYear() * 10000 +
+    (today.getMonth() + 1) * 100 +
+    today.getDate();
+
+  // Get a deterministic "random" offset for today
+  const offset = dailySeed % count;
+
+  // Get today's featured recipe
   const [featuredRecipe] = await db.query.recipes.findMany({
     limit: 1,
-    offset: Math.floor(Math.random() * count),
+    offset: offset,
   });
 
   if (!featuredRecipe) {
     return null;
   }
 
-  const allRecipes = await db.query.recipes.findMany({
+  const taggedRecipes = await db.query.recipes.findMany({
+    where: sql`array_length(tags, 1) > 0`,
+    columns: {
+      id: true,
+      title: true,
+      slug: true,
+      image: true,
+      description: true,
+      cookingTime: true,
+      servings: true,
+      tags: true,
+    },
     orderBy: sql`RANDOM()`,
-    where: (recipes, { ne }) => ne(recipes.id, featuredRecipe?.id ?? 0),
   });
+
+  // Group recipes by tag
+  const recipesByTag = taggedRecipes.reduce(
+    (acc, recipe) => {
+      recipe.tags.forEach((tag) => {
+        if (!acc[tag]) {
+          acc[tag] = [];
+        }
+        acc[tag].push(recipe);
+      });
+      return acc;
+    },
+    {} as Record<string, typeof taggedRecipes>,
+  );
+  console.log(recipesByTag);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="mx-auto max-w-4xl px-4 py-4 sm:py-8">
         <FeaturedRecipe recipe={featuredRecipe} />
-        <RecipeGrid recipes={allRecipes} />
+        {Object.entries(recipesByTag).map(([tag, recipes]) => (
+          <CategoryRow
+            key={tag}
+            title={tag}
+            recipes={recipes} // Limit to 6 recipes per category
+          />
+        ))}
       </main>
     </div>
   );

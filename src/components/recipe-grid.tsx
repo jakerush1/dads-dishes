@@ -39,7 +39,7 @@ export function RecipeGrid({ recipes }: RecipeGridProps) {
                 {recipe.description}
               </p>
 
-              <div className="flex items-center gap-4 text-sm text-red-600">
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   {recipe.cookingTime}

@@ -12,6 +12,7 @@ export const recipes = createTable("recipes", {
   servings: text("servings").notNull(),
   ingredients: text("ingredients").array().notNull(),
   directions: text("directions").array().notNull(),
+  tags: text("tags").array().notNull().default([]),
   quote: text("quote"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
