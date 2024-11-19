@@ -13,9 +13,25 @@ const domine = Domine({
 });
 
 export const metadata: Metadata = {
-  title: "Dad's Dishes",
-  description: "A collection of recipes and random thoughts from Dad.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  metadataBase: new URL("https://dads-dishes.vercel.app"),
+  title: {
+    default: "Dad's Dishes",
+    template: "%s | Dad's Dishes",
+  },
+  description: "A collection of recipes and random thoughts from Mark Rush.",
+  openGraph: {
+    title: "Dad's Dishes",
+    description: "A collection of recipes and random thoughts from Mark Rush.",
+    type: "website",
+    images: [
+      {
+        url: "https://utfs.io/f/4OOzxA6pSlL7mgOi4cKZPFRvk4eOjbitoy8QY1JM096GwVSI",
+        width: 2496,
+        height: 1664,
+        alt: "Dad's Dishes - Home Cooking and Random Thoughts",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
