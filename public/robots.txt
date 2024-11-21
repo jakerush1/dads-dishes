@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://recipesfromdad.com/sitemap.xml
+Sitemap: https://www.recipesfromdad.com/sitemap.xml

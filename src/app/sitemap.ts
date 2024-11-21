@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .from(recipes);
 
   const recipeUrls = allRecipes.map((recipe) => ({
-    url: `https://recipesfromdad.com/${recipe.slug}`,
+    url: `https://www.recipesfromdad.com/${recipe.slug}`,
     lastModified: recipe.updatedAt,
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -19,25 +19,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const routes = [
     {
-      url: "https://recipesfromdad.com",
+      url: "https://www.recipesfromdad.com",
       lastModified: new Date(),
       changeFrequency: "daily" as const,
       priority: 1,
     },
     {
-      url: "https://recipesfromdad.com/about",
+      url: "https://www.recipesfromdad.com/about",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.5,
     },
     {
-      url: "https://recipesfromdad.com/getting-started",
+      url: "https://www.recipesfromdad.com/getting-started",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     },
     {
-      url: "https://recipesfromdad.com/recipes",
+      url: "https://www.recipesfromdad.com/recipes",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,

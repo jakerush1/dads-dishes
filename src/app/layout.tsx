@@ -13,7 +13,7 @@ const domine = Domine({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://recipesfromdad.com"),
+  metadataBase: new URL("https://www.recipesfromdad.com"),
   title: {
     default: "Dad's Dishes",
     template: "%s | Dad's Dishes",
@@ -23,6 +23,8 @@ export const metadata: Metadata = {
     title: "Dad's Dishes",
     description: "A collection of recipes and random thoughts from Mark Rush.",
     type: "website",
+    url: "https://www.recipesfromdad.com",
+    siteName: "Dad's Dishes",
     images: [
       {
         url: "https://utfs.io/f/4OOzxA6pSlL7eMlWItNu7s3DGkZJPnoW6dT1R5NMSVOfAywX",
@@ -31,6 +33,13 @@ export const metadata: Metadata = {
         alt: "Dad's Dishes - Home Cooking and Random Thoughts",
       },
     ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.recipesfromdad.com",
   },
 };
 
