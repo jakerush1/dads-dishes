@@ -57,6 +57,8 @@ export default async function RecipePage({ params }: Props) {
       <RecipePageComponent
         title={recipe.title}
         description={recipe.description}
+        prepTime={recipe.cookingTime}
+        servings={recipe.servings}
         ingredients={recipe.ingredients}
         directions={recipe.directions}
         quote={recipe.quote ?? undefined}

@@ -26,7 +26,6 @@ const images = [
     src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t39.30808-6/434499695_10226995788620927_4142181393273241752_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PXMMWTQ_URwQ7kNvgG4t5S0&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=Almj_dhvHJ5j1UfOLPKYZfq&oh=00_AYDa6JXAZ4XxlFLxTZj4PRkBpxTG8b2XJiJUXhVuS6v-qA&oe=6742902A",
     alt: "Gourmet dish",
   },
-  // ... add all your images here
 ];
 
 export default function About() {

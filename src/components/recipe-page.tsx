@@ -12,6 +12,8 @@ interface RecipePageComponentProps {
   directions: string[];
   quote?: string;
   image: string;
+  prepTime: string;
+  servings: string;
 }
 
 export function RecipePageComponent({
@@ -21,6 +23,8 @@ export function RecipePageComponent({
   directions,
   quote,
   image,
+  prepTime,
+  servings,
 }: RecipePageComponentProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -38,17 +42,18 @@ export function RecipePageComponent({
 
         {/* Recipe Header */}
         <div className="mb-8">
-          <h1 className="font-domine mb-2 text-3xl font-bold leading-tight md:text-4xl">
+          <h1 className="mb-2 font-domine text-3xl font-bold leading-tight md:text-4xl">
             {title}
           </h1>
           <p className="mb-4 text-lg text-muted-foreground">{description}</p>
           <div className="flex flex-wrap items-center gap-6 text-sm text-red-600">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
-              75 minutes
+              {prepTime}
             </span>
             <span className="flex items-center gap-2">
-              <Users className="h-4 w-4" />6 servings
+              <Users className="h-4 w-4" />
+              {servings}
             </span>
           </div>
         </div>
@@ -74,7 +79,7 @@ export function RecipePageComponent({
 
         {/* Ingredients */}
         <section className="mb-8">
-          <h2 className="font-domine mb-4 text-2xl font-bold">Ingredients</h2>
+          <h2 className="mb-4 font-domine text-2xl font-bold">Ingredients</h2>
           <ul className="space-y-4">
             {ingredients.map((ingredient, index) => (
               <li key={index} className="flex items-center">
@@ -88,7 +93,7 @@ export function RecipePageComponent({
 
         {/* Preparation */}
         <section className="mb-6">
-          <h2 className="font-domine mb-4 text-2xl font-bold">Preparation</h2>
+          <h2 className="mb-4 font-domine text-2xl font-bold">Preparation</h2>
           <ol className="space-y-4">
             {directions.map((step, index) => (
               <li key={index} className="flex">

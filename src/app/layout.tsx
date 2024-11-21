@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://utfs.io/f/4OOzxA6pSlL7mgOi4cKZPFRvk4eOjbitoy8QY1JM096GwVSI",
+        url: "https://utfs.io/f/4OOzxA6pSlL7eMlWItNu7s3DGkZJPnoW6dT1R5NMSVOfAywX",
         width: 2496,
         height: 1664,
         alt: "Dad's Dishes - Home Cooking and Random Thoughts",
