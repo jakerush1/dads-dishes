@@ -13,7 +13,7 @@ const domine = Domine({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dads-dishes.vercel.app"),
+  metadataBase: new URL("https://recipesfromdad.com"),
   title: {
     default: "Dad's Dishes",
     template: "%s | Dad's Dishes",

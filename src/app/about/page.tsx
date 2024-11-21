@@ -1,39 +1,31 @@
 import { Separator } from "~/components/ui/separator";
 import Image from "next/image";
+import { aboutImages, chelsImages, jakeImages } from "./constants";
 
-const images = [
-  {
-    src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t1.6435-9/123940027_10219852082152730_3332973174375816384_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=hpLiMs8JRiMQ7kNvgEkIT2s&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=AvbDpKrESHa0KrLZZ1DO0l0&oh=00_AYBPBH_0xkUBvjr1EBlM3V54zH-6Z7UI9YnYKMaOxTRN2w&oe=676332AE",
-    alt: "Relaxing on a boat",
+export const metadata = {
+  title: "About",
+  description: "Learn about Dad's Dishes and the family behind the recipes.",
+  openGraph: {
+    title: "About | Dad's Dishes",
+    description: "Learn about Dad's Dishes and the family behind the recipes.",
+    type: "website",
+    images: [
+      {
+        url: "https://utfs.io/f/4OOzxA6pSlL7eMlWItNu7s3DGkZJPnoW6dT1R5NMSVOfAywX",
+        width: 2496,
+        height: 1664,
+        alt: "Dad's Dishes - About Page",
+      },
+    ],
   },
-  {
-    src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t39.30808-6/395207101_10226273412481975_4827278448637342562_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4UAC_JA9wEAQ7kNvgGzLxLW&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=AdO1miilgD8R1c4BmJywfrL&oh=00_AYCg_WT5D6brpW1OGz9h_-5uNB_WL7EIN71mpxGt1LZI-w&oe=67428D13",
-    alt: "Happy Birthday cake",
-  },
-  {
-    src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t39.30808-6/385078420_10226144535100121_7096199465535823678_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SOXstzRi_gQQ7kNvgHYND1-&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=AH_sftRuZ5k49tfLJJk4QuO&oh=00_AYBD5tnpCbbvUDTX6PMz_f5AMA-DPc8awyg65COpLyFjuw&oe=67429F16",
-    alt: "Enjoying the water",
-  },
-  {
-    src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t39.30808-6/323199421_578334040298465_9174968814051202907_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KlBNumAtTOsQ7kNvgFXBk9e&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=AkfCbLn3gR1dLEpGsRXCwWy&oh=00_AYDdMhU_DbHx_xVtnZJVSmeCj5-bsAvdDOEEx7z-60Bikw&oe=67428608",
-    alt: "Fine wine",
-  },
-  {
-    src: "https://scontent.fagc1-1.fna.fbcdn.net/v/t39.30808-6/455261116_18465709705029150_5097485446728728240_n.jpg?stp=dst-jpegr&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=UxngQmBi8f8Q7kNvgHqILm2&_nc_zt=23&se=-1&_nc_ht=scontent.fagc1-1.fna&_nc_gid=A-sxb7WtEwbFAxXGOMJLgZe&oh=00_AYDOTn9QzHdYrXZ-hrMkLBEgZlBv1v6WkPOPOzuZBUzVUg&oe=67429A4C",
-    alt: "Friends gathering",
-  },
-  {
-    src: "https://scontent.fagc1-2.fna.fbcdn.net/v/t39.30808-6/434499695_10226995788620927_4142181393273241752_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=PXMMWTQ_URwQ7kNvgG4t5S0&_nc_zt=23&_nc_ht=scontent.fagc1-2.fna&_nc_gid=Almj_dhvHJ5j1UfOLPKYZfq&oh=00_AYDa6JXAZ4XxlFLxTZj4PRkBpxTG8b2XJiJUXhVuS6v-qA&oe=6742902A",
-    alt: "Gourmet dish",
-  },
-];
+};
 
 export default function About() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <h1 className="mb-4 text-3xl font-semibold text-primary">About</h1>
       <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:gap-4">
-        {images.map((image, index) => (
+        {aboutImages.map((image, index) => (
           <div key={index} className="relative aspect-square">
             <Image
               src={image.src}
@@ -116,7 +108,21 @@ export default function About() {
           <h3 className="mb-4 text-2xl font-semibold text-primary">
             A note to my daughter –
           </h3>
+          <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:gap-4">
+            {chelsImages.map((image, index) => (
+              <div key={index} className="relative aspect-square">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="rounded-lg object-cover"
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
           <p className="leading-loose text-primary">Chelsea...</p>
+
           <br />
           <p className="leading-loose text-primary">
             So I was reflecting on my love of Peyton. And I share these thoughts
@@ -159,6 +165,19 @@ export default function About() {
           <h3 className="mb-4 text-2xl font-semibold text-primary">
             A note to my son –
           </h3>
+          <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:gap-4">
+            {jakeImages.map((image, index) => (
+              <div key={index} className="relative aspect-square">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="rounded-lg object-cover"
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
           <p className="leading-loose text-primary">Jake...</p>
           <br />
           <p className="leading-loose text-primary">

@@ -1,5 +1,25 @@
 import { Separator } from "~/components/ui/separator";
 
+export const metadata = {
+  title: "Getting Started",
+  description:
+    "Tips and tricks for getting started with cooking, from ingredient selection to kitchen atmosphere and table settings.",
+  openGraph: {
+    title: "Getting Started | Dad's Dishes",
+    description:
+      "Tips and tricks for getting started with cooking, from ingredient selection to kitchen atmosphere and table settings.",
+    type: "website",
+    images: [
+      {
+        url: "https://utfs.io/f/4OOzxA6pSlL7eMlWItNu7s3DGkZJPnoW6dT1R5NMSVOfAywX",
+        width: 2496,
+        height: 1664,
+        alt: "Dad's Dishes - Getting Started Guide",
+      },
+    ],
+  },
+};
+
 export default function GettingStarted() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">

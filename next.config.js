@@ -7,10 +7,7 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    remotePatterns: [
-      { hostname: "scontent.fagc1-1.fna.fbcdn.net" },
-      { hostname: "scontent.fagc1-2.fna.fbcdn.net" },
-    ],
+    remotePatterns: [{ hostname: "utfs.io" }],
   },
 };
 
