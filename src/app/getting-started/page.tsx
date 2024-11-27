@@ -1,5 +1,6 @@
 import { Separator } from "~/components/ui/separator";
-
+import { startImages, wineImages, tableImages } from "./constants";
+import Image from "next/image";
 export const metadata = {
   title: "Getting Started",
   description:
@@ -27,6 +28,19 @@ export default function GettingStarted() {
         <h2 className="mb-6 text-3xl font-bold text-primary">
           So How Do You Get Started?
         </h2>
+        <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:gap-4">
+          {startImages.map((image, index) => (
+            <div key={index} className="relative aspect-square">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="rounded-lg object-cover"
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+              />
+            </div>
+          ))}
+        </div>
       </section>
       <section className="mb-12">
         <div className="space-y-8">
@@ -147,6 +161,19 @@ export default function GettingStarted() {
             <h3 className="mb-4 text-2xl font-semibold text-primary">
               Appetizers, Wine and Cocktails
             </h3>
+            <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:gap-4">
+              {wineImages.map((image, index) => (
+                <div key={index} className="relative aspect-square">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="rounded-lg object-cover"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                  />
+                </div>
+              ))}
+            </div>
             <p className="leading-loose text-primary">
               Think of your appetizers as an ice breaker or a warm-up while
               entertaining friends and family. It creates a central location to
@@ -174,6 +201,19 @@ export default function GettingStarted() {
             <h3 className="mb-4 text-2xl font-semibold text-primary">
               Table Settings
             </h3>
+            <div className="mb-12 grid grid-cols-2 gap-2 sm:grid-cols-2 lg:gap-4">
+              {tableImages.map((image, index) => (
+                <div key={index} className="relative aspect-square">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="rounded-lg object-cover"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                  />
+                </div>
+              ))}
+            </div>
             <p className="leading-loose text-primary">
               For a party, set up the night before. It makes things easier. For
               a simple family meal, wing it but wing it with candles. Votive

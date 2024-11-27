@@ -41,6 +41,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.recipesfromdad.com",
   },
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
