@@ -13,15 +13,15 @@ export async function RecipeHomeComponent() {
 
   const count = result?.[0]?.count ?? 0;
 
-  // Use the current date as a seed for random selection
+  // Use the day of the year as seed
   const today = new Date();
-  const dailySeed =
-    today.getFullYear() * 10000 +
-    (today.getMonth() + 1) * 100 +
-    today.getDate();
+  const start = new Date(today.getFullYear(), 0, 0);
+  const diff = today.getTime() - start.getTime();
+  const oneDay = 1000 * 60 * 60 * 24;
+  const dayOfYear = Math.floor(diff / oneDay);
 
   // Get a deterministic "random" offset for today
-  const offset = dailySeed % count;
+  const offset = dayOfYear % count;
 
   // Get today's featured recipe
   const [featuredRecipe] = await db.query.recipes.findMany({
