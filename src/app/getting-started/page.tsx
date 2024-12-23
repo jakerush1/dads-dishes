@@ -85,12 +85,12 @@ export default function GettingStarted() {
               them. Sure you can make them yours, modify them and even create
               what you think is a new dish but all we cook and how we cook it is
               attributable to the great cooks and chefs that have influenced us
-              from our parents or grandparents to Gloria Child’s – “everything
-              is better with butter”. Eventually you are cooking Baba Sue’s
-              chuck roast with mashed potatoes or Pappy’s French Toast with
-              Fried Hot Dogs. The recipes will become your own but the credit
-              flows from all those who have cooked for us or who have shared
-              their creations.
+              from our parents or grandparents to Julia Child’s – “everything is
+              better with butter”. Eventually you are cooking Baba Sue’s chuck
+              roast with mashed potatoes or Pappy’s French Toast with Fried Hot
+              Dogs. The recipes will become your own but the credit flows from
+              all those who have cooked for us or who have shared their
+              creations.
             </p>
           </div>
           <Separator className="h-[3px] bg-primary" />
