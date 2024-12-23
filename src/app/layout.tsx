@@ -6,6 +6,7 @@ import { ThemeProvider } from "~/components/theme-provider";
 import { Footer } from "~/components/footer";
 import { Nav } from "~/components/nav";
 import { Domine } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const domine = Domine({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default function RootLayout({
             <Nav />
             <main className="flex-1">{children}</main>
             <Footer />
+            <Analytics />
           </div>
         </ThemeProvider>
       </body>
